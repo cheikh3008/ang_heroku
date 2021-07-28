@@ -1,0 +1,28 @@
+<mat-card>
+  <form [formGroup]="formMenu" >
+    <h3>Ajouter un menu</h3>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="outline" class="mt-3" >
+      <mat-label>Categorie</mat-label>
+      <label>
+        <input matInput placeholder="Tapez le categorie"  formControlName="categorie"  >
+      </label>
+      <mat-error *ngIf="submitted && f.categorie.errors" class="invalid-feedback">
+        <mat-error *ngIf="f.categorie.errors.required">Veuillez taper le categorie</mat-error>
+        <mat-error *ngIf="f.categorie.errors.minlength">Veuillez taper au moins 3 caractères</mat-error>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Veuillez choisir un image</mat-label>
+      <ngx-mat-file-input formControlName="image" (change)="onFileSelected($event)" placeholder="Basic outline placeholder" ></ngx-mat-file-input>
+      <mat-icon matSuffix>photo_camera</mat-icon>
+      <mat-error *ngIf="submitted && f.image.errors" class="invalid-feedback">
+        <mat-error *ngIf="f.image.errors.required">Veuillez choisir un image </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <button class="btn-ang" mat-raised-button color="primary" (click)="onSubmitForm()">Enrégistrer</button>
+    </div>
+  </form>
+</mat-card>

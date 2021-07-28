@@ -1,0 +1,60 @@
+<app-nav-bar></app-nav-bar>
+<div class="add-resto">
+  <div class="col-md-8 mx-auto ">
+    <div class="container add-resto-content py-3">
+      <form [formGroup]="reservationForm" class="" >
+          <h3>Reserver une table</h3>
+          <mat-divider></mat-divider>
+          <div class="pt-2" *ngIf="errors" class="alert alert-danger text-center">
+            {{errors}}
+          </div>
+            <mat-form-field appearance="outline" class="mt-3" style="width: 100%;">
+              <mat-label>Choisir une date</mat-label>
+              <label>
+                <input matInput placeholder="Tapez la date de début" formControlName="createdAt" type="date" class="input">
+              </label>
+              <mat-error *ngIf="submitted && f.createdAt.errors" class="invalid-feedback">
+                <mat-error *ngIf="f.createdAt.errors.required">Veuillez choisir une date </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  style="width: 100%;">
+              <mat-label>heure</mat-label>
+              <label>
+                <input type="time"  matInput placeholder="Tapez le heure"  formControlName="heure"  >
+              </label>
+              <mat-error *ngIf="submitted && f.heure.errors" class="invalid-feedback">
+                <mat-error *ngIf="f.heure.errors.required">Veuillez taper le heure</mat-error>
+              </mat-error>
+            </mat-form-field>
+                <!-- <section class="row"  >
+                    <mat-card class="m-2 d-flex" *ngFor="let tables of dataTables" >
+                      <input type="checkbox" class="btn-check" value="{{tables.id}}"  (change)="onChange($event)"> <br>
+                      <strong>Table N°: {{tables.numero}}</strong>
+                    </mat-card>
+                  </section> -->
+              <p>Choisir un ou plusiuers tables</p>
+              <div *ngFor="let tables of dataTables">
+
+                <div class="form-check form-check-inline" >
+                  <input class="form-check-input " type="checkbox" value="{{tables.id}}" (change)="onChange($event)" id=" {{tables.id}} ">
+                  <label class="form-check-label mt-1" for=" {{tables.id}} ">
+                    Table Numero:<strong> {{tables.numero}}</strong> -
+                    Nombre de personne:<strong> {{tables.nbPersonne}}</strong>
+                  </label>
+                </div>
+
+              </div>
+            <mat-error *ngIf="submitted && f.tables.errors" class="invalid-feedback">
+              <mat-error *ngIf="f.tables.errors.required">Veuillez choisir une ou plusiuers tables</mat-error>
+            </mat-error>
+          <!-- <div>
+            <button class="btn-ang mt-3" mat-raised-button color="primary" (click)="onSubmitForm()">Enrégistrer</button>
+          </div> -->
+          <div class="d-flex mt-3">
+            <button class="btn-ang btn-modifier " (click)="onSubmitForm()" >Enrégistrer</button>
+            <button class="btn-ang btn-annuler " (click)="backClicked()">Annuler</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<app-nav-bar></app-nav-bar>
+<div class="edit-client">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto  " style="background-color: #fff; padding: 30px;">
+        <h2>Modifier le profil</h2>
+        <mat-divider></mat-divider>
+        <form [formGroup]="clientForm">
+          <div class="row mt-3">
+              <mat-form-field appearance="outline">
+                <mat-label>Entrez le nom complet </mat-label>
+                <input matInput formControlName="nomComplet" placeholder="Placeholder" >
+                <mat-error *ngIf="submitted && f.nomComplet.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.nomComplet.errors.required">Veuillez taper le nom complet </mat-error>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Entrez le nom d'utilisateur </mat-label>
+                <input matInput formControlName="username" placeholder="Placeholder" >
+                <mat-error *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.username.errors.required">Veuillez taper le nom d'utilisateur </mat-error>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Entrez l'adresse  </mat-label>
+                <input matInput formControlName="adresseDomicile" placeholder="Placeholder" type="text">
+                <mat-error *ngIf="submitted && f.adresseDomicile.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.adresseDomicile.errors.required">Veuillez taper l'adresse' </mat-error>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Entrez le numéro de téléphone </mat-label>
+                <input matInput formControlName="telephone"  placeholder="Placeholder" >
+                <mat-error *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.telephone.errors.required">Veuillez taper le numéro de téléphone' </mat-error>
+                  <mat-error *ngIf="f.telephone.errors.pattern">Le numéro de téléphone n'est pas valide </mat-error>
+                </mat-error>
+              </mat-form-field>
+              <div class="d-flex justify-content-between">
+                <button class="btn-ang btn-modifier " (click)="onSubmitForm()" >Modifier</button>
+                <button class="btn-ang btn-annuler " (click)="backClicked()">Annuler</button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

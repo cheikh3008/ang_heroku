@@ -1,0 +1,43 @@
+<nav class=" navbar navbar-expand-lg  sticky-top" id="mainNav">
+  <div class="container">
+      <div class="container-lg">
+          <a class="navbar-brand " [routerLink]="['/']">
+              Rest'Haut
+          </a>
+          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive"><i class="fas fa-bars pl-2"></i>
+          </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Recherche par resto...">
+        </form>
+          <ul class=" navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a [routerLink]="['/login']" routerLinkActive="router-link-active"  rel="noopener noreferrer" class="nav-link text-uppercase " >Connexion</a>
+              </li>
+              <li class="nav-item">
+                  <a [routerLink]="['/add/resto']" routerLinkActive="router-link-active"  rel="noopener noreferrer" class="nav-link text-uppercase inscription " >Créer un espace resto </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+<div class="accueil">
+ <div class="container mt-3">
+  <div class="col-md-12 mx-auto">
+    <div class="row ">
+      <div class="col-sm-6 col-md-4 my-2 " *ngFor="let resto of dataResto;">
+        <a [routerLink]="['/list/resto/', resto.id]" routerLinkActive="router-link-active"  rel="noopener noreferrer">
+          <div class="card grid">
+            <img [src]="urlimg+resto.image" class="card-img-top card-img-resto" alt="...">
+            <div class="card-body">
+              <h1 class="card-text"> {{resto.nomResto}} </h1>
+              <h3 class="card-text"> {{resto.description}} </h3>
+            </div>
+          </div>
+        </a>
+       </div>
+    </div>
+  </div>
+ </div>
+</div>

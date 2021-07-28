@@ -1,0 +1,72 @@
+<mat-card >
+  <div class="d-flex justify-content-between">
+    <h2 class="ml-2 " >La liste des plats</h2>
+    <a mat-list-item routerLinkActive="list-item-active"  routerLink="/dashboard/plat/add" class="add" >
+      <mat-icon class="add-user" title="Ajouter">add_circle </mat-icon>
+    </a>
+  </div>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Recherche</mat-label>
+    <label>
+      <input matInput placeholder="Rechercher un plat" (keyup)="applyFilter($event)">
+    </label>
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z8 mt-3" >
+    <mat-table [dataSource]="listData "  >
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+      <ng-container matColumnDef="action" >
+        <mat-header-cell *matHeaderCellDef >ACTION</mat-header-cell  >
+        <mat-header-cell *matCellDef="let row " >
+          <div class="d-flex justify-content-around ">
+            <button mat-mini-fab color="warn" routerLink="/dashboard/plat/edit/{{row.id}}" >
+                <mat-icon>border_color </mat-icon>
+              </button>
+              <br>
+              <button mat-menu-item (click)="deleteMenu(row.id)" >
+                <mat-icon>delete</mat-icon>
+              </button>
+          </div>
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="id" >
+        <mat-header-cell *matHeaderCellDef>Idenfiant</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataPlats">
+          {{dataPlats.id}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nomPlat">
+        <mat-header-cell *matHeaderCellDef  >Nom plat</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataPlats ">
+          {{dataPlats.nomPlat}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef  >Description</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataPlats">
+          {{dataPlats.description}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="prix">
+        <mat-header-cell *matHeaderCellDef  >Prix</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataPlats">
+          {{dataPlats.prix}}
+        </mat-header-cell>
+      </ng-container>
+
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
+<!-- <h1>Hello  Worls</h1>
+<div *ngFor="let imageSource of dataPlats ">
+  <p> {{imageSource.id}} </p>
+  <p> {{imageSource.nomPlat}} </p>
+  <p> {{imageSource.description}} </p>
+  <p> {{imageSource.prix}} </p>
+  <img [src]="urlimg+imageSource.image" alt="imageSource.image" width="100">
+</div> -->

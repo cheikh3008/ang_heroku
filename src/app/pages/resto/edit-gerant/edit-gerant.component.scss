@@ -1,0 +1,18 @@
+mat-form-field {
+  width: 100%;
+}
+.button-div{
+  width: 100%;
+  height: 68px !important;
+}
+button.btn-ang {
+  margin: 5px !important;
+  width: 100% !important;
+}
+button.btn-annuler {
+  background-color: #333 !important;
+  color: #ffa900;
+  &:hover{
+    background-color: #000 !important;
+  }
+}

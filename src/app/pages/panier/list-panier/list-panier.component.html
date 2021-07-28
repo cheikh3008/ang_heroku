@@ -1,0 +1,59 @@
+<app-nav-bar></app-nav-bar>
+<div class="panier-list">
+  <div>
+    <div *ngIf="plats; else elseBlock" class="container" style="background-color: #fff;">
+      <h2>Votre panier</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom plat</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Total</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody  *ngFor="let plat of plats;">
+          <tr>
+            <th scope="row">{{ plat.id }}</th>
+            <td>{{ plat.nomPlat }}</td>
+            <td>{{ plat.quantite }}</td>
+            <td>{{ plat.prix }}</td>
+            <td>{{ plat.prix * plat.quantite}}</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <span><button class="btn btn-success" (click)="addQuantity(plat.id)"> + </button></span>
+                <span><button class="btn btn-warning" (click)="delQuantity(plat.id)" > - </button></span>
+                <span><button class="btn btn-danger" (click)="removeCart(plat.id)" >X</button></span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+        <tr >
+            <td colspan="4" > <h3><strong>Total:</strong></h3> </td>
+            <td> <h3><strong>{{ total }}</strong></h3> </td>
+            <td>
+              <div *ngIf="isRoleClient(); else elseBlock" class="d-flex justify-content-between">
+                <a routerLink="/commande"  class="btn btn-ang btn-cmd">
+                  Passer la commande
+                </a>
+              </div>
+              <ng-template #elseBlock>
+                <a (click)="openDialog()" class="btn btn-ang btn-cmd" >
+                  Passer la commande
+                </a>
+              </ng-template>
+            </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div class="container " style="background-color: #fff;">
+      <h2 class="py-3 text-center">Suprise, votre panier est vide ! <a class="btn btn-link" (click)="backClicked()" > Retour</a></h2>
+    </div>
+  </ng-template>
+</div>

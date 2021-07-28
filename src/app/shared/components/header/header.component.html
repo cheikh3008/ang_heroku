@@ -1,0 +1,37 @@
+<mat-toolbar  >
+  <mat-toolbar-row >
+    <span>App Logo</span>
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+
+            <button mat-menu-item (click)="onHome()" >
+              <mat-icon>visibility</mat-icon>
+              Voir le site
+            </button>
+            <button mat-menu-item (click)="onUpdate()">
+              <mat-icon> border_color</mat-icon>
+              Modifier mot de passe
+            </button>
+            <button mat-menu-item (click)="getId(idGerant)">
+              <mat-icon> person_pin</mat-icon>
+              Modifier profile
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>exit_to_app </mat-icon>
+              Deconnexion
+            </button>
+          </mat-menu>
+
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

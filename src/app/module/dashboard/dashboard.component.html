@@ -1,0 +1,48 @@
+  <div class="mat-elevation-z8 pb-4">
+    <div class="container">
+      <div class="row pt-3">
+        <div class="col-md-3">
+          <mat-card class="card-sub" style="background-color: #ffa900">
+            <mat-icon class="cmd"> fastfood</mat-icon>
+            <div style="float: right;">
+              <h3><strong> {{data.commande}} </strong> <br> <span>Commandes</span></h3>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-md-3">
+          <mat-card class="card-sub" style="background-color: #00cdce">
+            <mat-icon class="res"> hotel</mat-icon>
+            <div style="float: right;">
+              <h3><strong> {{data.reservation}} </strong> <br> <span>Reservations</span></h3>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-md-3">
+          <mat-card class="card-sub" style="background-color: #fd6e76">
+            <mat-icon class="tab"> table_chart</mat-icon>
+            <div style="float: right;">
+              <h3><strong> {{data.table}} </strong> <br> <span>Tables</span></h3>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-md-3">
+          <mat-card class="card-sub" style="background-color: #a3a3a3">
+            <mat-icon class="men"> restaurant_menu</mat-icon>
+            <div style="float: right;">
+              <h3><strong> {{data.menu}} </strong> <br> <span>Menus</span></h3>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container  mt-2">
+    <div class="d-flex justify-content-around">
+      <div class="col-md-6 m-3 p-4 mat-elevation-z8 myChart">
+        <div><canvas  width="1000" height="640" id="barChart"></canvas></div>
+      </div>
+      <div class="col-md-6 m-3 p-4 mat-elevation-z8 myChart">
+        <div><canvas  width="1000" height="640" id="lineChart"></canvas></div>
+      </div>
+    </div>
+  </div>

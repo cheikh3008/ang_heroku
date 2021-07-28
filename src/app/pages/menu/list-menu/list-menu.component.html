@@ -1,0 +1,56 @@
+<mat-card >
+  <div class="d-flex justify-content-between">
+    <h2 class="ml-2 " >La liste des menus</h2>
+    <a mat-list-item routerLinkActive="list-item-active"  routerLink="/dashboard/menu/add" class="add" >
+      <mat-icon class="add-user" title="Ajouter">add_circle  </mat-icon>
+    </a>
+  </div>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Recherche</mat-label>
+    <label>
+      <input matInput placeholder="Rechercher un plat" (keyup)="applyFilter($event)">
+    </label>
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z8 mt-3" >
+    <mat-table [dataSource]="listData"  >
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+      <ng-container matColumnDef="action" >
+        <mat-header-cell *matHeaderCellDef >ACTION</mat-header-cell  >
+        <mat-header-cell *matCellDef="let row" >
+          <div class="d-flex justify-content-around ">
+              <button mat-menu-item (click)="getId(row.id)" >
+                <mat-icon>border_color </mat-icon>
+              </button>
+              <br>
+              <button mat-menu-item (click)="deleteMenu(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+          </div>
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="id" >
+        <mat-header-cell *matHeaderCellDef>Idenfiant</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataMenus">
+          {{dataMenus.id}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="categorie">
+        <mat-header-cell *matHeaderCellDef  >Description</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataMenus">
+          {{dataMenus.categorie}}
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef  >Image</mat-header-cell>
+        <mat-header-cell *matCellDef="let dataMenus">
+          <img width="100" class=" card-img-plat" [src]="urlimg+dataMenus.image"  alt="Image de {{ dataMenus.categorie }}">
+
+        </mat-header-cell>
+      </ng-container>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>

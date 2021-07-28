@@ -1,0 +1,95 @@
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Connexion">
+    <form [formGroup]="formConnexion" (ngSubmit)="onSubmitLogin()" class="example-form mt-4">
+        <mat-form-field class="mb-3" appearance="outline">
+          <mat-label>Entrez le nom d'utilisateur </mat-label>
+          <input matInput formControlName="username" placeholder="Placeholder">
+          <mat-icon matSuffix><mat-icon>person</mat-icon></mat-icon>
+          <mat-error *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.username.errors.required">Veuillez taper le nom d'utilisateur</mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Entrez le mot de passe </mat-label>
+          <input matInput formControlName="password" placeholder="Placeholder" type="password">
+          <mat-icon matSuffix><mat-icon>no_encryption</mat-icon></mat-icon>
+          <mat-error *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.password.errors.required">Veuillez taper le password</mat-error>
+          </mat-error>
+        </mat-form-field>
+      <div>
+        <button class="btn-ang mt-3 btn btn-block" >Se connecter</button>
+      </div>
+      <div class="alert alert-danger mt-2 text-center" *ngIf="errorMessageLogin" > {{errorMessageLogin}} </div>
+    </form>
+
+  </mat-tab>
+  <mat-tab label="Création de compte">
+    <div class="col-md-12">
+      <form [formGroup]="inscriptionForm" class="formIns"  (ngSubmit)="onSubmitRegister();">
+        <div class="alert alert-danger mt-2 text-center" *ngIf="errorMessageRegister" > {{errorMessageRegister}} </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Entrez le nom complet </mat-label>
+              <input matInput formControlName="nomComplet" placeholder="Placeholder" >
+            </mat-form-field>
+            <mat-error *ngIf="submitted && g.nomComplet.errors" class="invalid-feedback">
+              <mat-error *ngIf="g.nomComplet.errors.required">Veuillez taper le nom complet </mat-error>
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Entrez le nom d'utilisateur </mat-label>
+              <input matInput formControlName="username" placeholder="Placeholder" >
+            </mat-form-field>
+            <mat-error *ngIf="submitted && g.username.errors" class="invalid-feedback">
+              <mat-error *ngIf="g.username.errors.required">Veuillez taper le nom d'utilisateur </mat-error>
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Entrez le mot de passe </mat-label>
+              <input matInput formControlName="password" placeholder="Placeholder" type="password">
+            </mat-form-field>
+            <mat-error *ngIf="submitted && g.password.errors" class="invalid-feedback">
+              <mat-error *ngIf="g.password.errors.required">Veuillez taper le mot de passe </mat-error>
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Confimer le mot de passe </mat-label>
+              <input matInput formControlName="confirmPassword"  placeholder="Placeholder" type="password">
+            </mat-form-field>
+            <mat-error *ngIf="submitted && g.confirmPassword.errors" class="invalid-feedback">
+              <mat-error *ngIf="g.confirmPassword.errors.required">Confirmer le mot de passe </mat-error>
+              <mat-error *ngIf="g.confirmPassword.errors.mustMatch">Les deux mots de passe ne correspondent pas</mat-error>
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Entrez l'adresse </mat-label>
+              <input matInput formControlName="adresseDomicile" placeholder="Placeholder">
+            </mat-form-field>
+            <mat-error *ngIf="submitted && g.adresseDomicile.errors" class="invalid-feedback">
+              <mat-error *ngIf="g.adresseDomicile.errors.required">Veuillez taper l'adresse' </mat-error>
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Entrez le numéro de téléphone </mat-label>
+              <input matInput formControlName="telephone"  placeholder="Placeholder" >
+            </mat-form-field>
+            <mat-error *ngIf="submitted && g.telephone.errors" class="invalid-feedback">
+              <mat-error *ngIf="g.telephone.errors.required">Veuillez taper le numéro de téléphone' </mat-error>
+              <mat-error *ngIf="g.telephone.errors.pattern">Le numéro de téléphone n'est pas valide </mat-error>
+            </mat-error>
+          </div>
+          <div class="col-md-12">
+            <button class="btn-ang mt-3 btn btn-block"  >Enrégistrer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>

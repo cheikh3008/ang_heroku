@@ -1,0 +1,29 @@
+<app-nav-bar></app-nav-bar>
+<div class="add-cmd">
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-6 mx-auto my-5">
+        <div class="info-contact " style="background-color: #fff; padding: 15px;">
+          <h2>Details du contact</h2>
+          <mat-divider></mat-divider>
+          <h3 class="mt-3">Nom complet: <span>{{nomComplet}}</span> </h3>
+          <h3 class="mt-3">Numéro de téléphone: <span>{{telephone}}</span> </h3>
+          <h3 class="mt-3 mb-3">Adresse de livraison: <span>{{adresse}}</span> </h3>
+          <mat-divider></mat-divider>
+          <div class="mt-3 d-flex justify-content-between" *ngFor="let plat of plats;" >
+            <div>Nom du plat: <strong>{{plat.nomPlat}}</strong> </div>
+            <div>Quantite: <strong>{{plat.quantite}}</strong> </div>
+            <div>Prix: <strong>{{plat.prix * plat.quantite}}</strong> </div>
+          </div>
+          <div class="mt-3 d-flex justify-content-between">
+            <h2>Total: </h2>
+            <h2><strong> {{total}} </strong></h2>
+          </div>
+          <form [formGroup]="form">
+            <button type="submit" class="btn btn-ang" (click)="onUpload()">Valider la commande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

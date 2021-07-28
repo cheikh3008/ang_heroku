@@ -1,0 +1,38 @@
+mat-form-field{
+  font-size: 1em;
+  width: 100%;
+}
+  mat-card{
+    width: 130px;
+  width: 130px;
+  margin-top: 10px;
+  text-align: center;
+  &:hover{
+    border: 2px solid #333;
+  }
+  mat-card-title{
+    font-size: 1.2em;
+    text-align: center;
+  }
+  img{
+    width: 100px;
+    padding: 10px;
+  }
+}
+
+/* Partie mobile */
+@media only screen and (max-width: 768px) {
+  mat-card{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    mat-card-title{
+      font-size: 1.1em;
+    }
+    img{
+      width: 50px !important;
+      text-align: center;
+      padding: 5px;
+    }
+  }
+}

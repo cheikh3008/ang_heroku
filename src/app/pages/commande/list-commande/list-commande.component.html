@@ -1,0 +1,69 @@
+<mat-card >
+  <div class="d-flex justify-content-between">
+    <h2 class="ml-2 " >La liste des commandes</h2>
+  </div>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Recherche</mat-label>
+    <label>
+      <input matInput placeholder="Rechercher un nom" name="search" [(ngModel)]="searchText" autocomplete="off">
+    </label>
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z8 mt-3">
+  <ng-container  *ngIf="commande.length > 0" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">N°commande</th>
+        <th scope="col">Nom complet</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Plats</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let commande of commande | filter:searchText" >
+      <tr>
+        <th scope="row"> {{commande.id}} </th>
+        <td> {{commande.numCommande}} </td>
+        <td> {{commande.user.nomComplet}}</td>
+        <td>  {{commande.user.telephone}}  </td>
+        <td>  {{commande.user.adresse}}  </td>
+        <div *ngFor="let plcmd of commande.platCommandes" >
+          <td >{{plcmd.id}} - {{plcmd.quantite}}</td>
+
+        </div>
+        <td>
+          <!-- <button (click)="onStatus(commande.id)" class="isValid-btn" title="Validé">
+            <div *ngIf="commande.isValid; else elseBlock">
+              <mat-icon class="green" style="color: green;" >check_circle_outline</mat-icon>
+            </div>
+            <ng-template #elseBlock>
+              <mat-icon class="warn" color="warn">block</mat-icon>
+            </ng-template>
+          </button> -->
+          <div *ngIf="commande.isValid; else elseBlock">
+            <button (click)="onStatus(commande.id)" class="action-btn" title="Validé">
+              <mat-icon style="color: green;" >check_circle_outline</mat-icon>
+            </button>
+          </div>
+          <ng-template #elseBlock>
+            <button (click)="onStatus(commande.id)" class="action-btn" title="En cours...">
+              <mat-icon color="warn">block</mat-icon>
+            </button>
+          </ng-template>
+        </td>
+        <td> {{commande.createdAt |  date:'dd-MM-yyyy - H:m'}} </td>
+      </tr>
+    </tbody>
+  </table>
+  </ng-container>
+  <ng-container *ngIf="commande.length === 0">
+    <div class="container " style="background-color: #fff;">
+      <h2 class="py-3 text-center">il n'y a pas de commande !</h2>
+    </div>
+  </ng-container>
+</div>
+</mat-card>

@@ -1,0 +1,78 @@
+.profil-card{
+  text-align: center;
+  padding: 0 20px 20px 20px;
+  img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover ;
+    //border: 1px solid #333;
+    //position: relative;
+    z-index: 0;
+  }
+  .bloc-icon-image{
+    background-color: rgb(200, 200, 200);
+    position:sticky;
+    display: block;
+    padding: 2px;
+    width: 40px;
+    margin-top: -35px;
+    margin-left: 130px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 100%;
+    &:hover{
+      background-color: rgb(175, 175, 175);
+    }
+    .icon-image{
+      &:hover{
+        color: #333;
+      }
+    }
+
+  }
+}
+.multi-level , .item ul, .nav-item input{
+  display: none;
+}
+.multi-level, .item input:checked ~ ul {
+  display: block;
+}
+.nav-item{
+  h2{
+    font-size: 1.6em;
+    text-transform: capitalize;
+  }
+  .nav-item ul, .nav-item li {
+    width: 100%;
+    line-height: 40px;
+    margin: 0;
+    padding: 0 1em;
+    list-style: none;
+    text-decoration: none;
+    font-weight: 400;
+    width: 100%;
+    color: #333;
+  }
+  .item ul li{
+    list-style: none;
+    padding: 1px;
+    &:hover{
+      background-color: #ffa900;
+    }
+  }
+
+  label{
+    line-height: 40px;
+    color: #333;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    &:hover{
+      background-color: #ffa900;
+    }
+  }
+
+}
+
+mat-icon{
+  margin: 5px;
+}

@@ -1,0 +1,43 @@
+<mat-toolbar class="mat-elevation-z8">
+  <div class="container">
+    <div class="d-flex">
+      <mat-icon mat-button class="btn-home mt-2"  routerLink="/">home</mat-icon>
+      <span mat-button class="resto_nom mt-2" (click)="getRelead()">
+        {{ resto.nomResto }}
+      </span>
+      <div class="spacer"></div>
+      <a mat-button routerLink="/panier" class="d-flex justify-content-between ">
+        <span class="panier-count p-1">{{ itemInCart }}</span>
+        <mat-icon class="m-1 mt-1">shopping_basket</mat-icon>
+        <span>Voir le panier</span>
+      </a>
+      <div *ngIf="isRoleClient(); else elseBlock">
+        <a mat-button routerLink="/reservation/28">
+          <mat-icon>subtitles</mat-icon>
+          Reserver une table
+        </a>
+        <a mat-button [matMenuTriggerFor]="menu">
+          {{ nomComplet }}
+          <mat-icon>expand_more</mat-icon>
+        </a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="getProfil()" >
+            <mat-icon> person_pin</mat-icon>
+            Mon profil
+          </button>
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>exit_to_app </mat-icon>
+            Deconnexion
+          </button>
+        </mat-menu>
+      </div>
+      <ng-template #elseBlock>
+        <a mat-button (click)="openDialog()" class="d-flex justify-content-between ">
+          <mat-icon>subtitles</mat-icon>
+            Reserver une table
+        </a>
+      </ng-template>
+    </div>
+  </div>
+</mat-toolbar>
+

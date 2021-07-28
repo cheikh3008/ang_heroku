@@ -1,0 +1,32 @@
+<div class="card container"  >
+  <h2 class="mt-3" >Ajouter un tables</h2>
+  <div style="overflow:auto; margin-bottom: 30px">
+    <div class="mat-elevation-z8" >
+      <mat-divider></mat-divider>
+  <form [formGroup]="formTables" class="mt-3" >
+        <mat-form-field appearance="outline">
+          <mat-label>Numéro de table</mat-label>
+          <label>
+            <input matInput placeholder="Entrez le nom du plat"  formControlName="numero" class="input">
+          </label>
+          <mat-error *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.numero.errors.required">Veuillez taper le numero de table</mat-error>
+            <mat-error *ngIf="f.numero.errors.pattern">Le numero de table doit contenir seulement des lettres </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre de personne</mat-label>
+          <label>
+            <input matInput placeholder="Entrez le nombre Personne"  formControlName="nbPersonne">
+          </label>
+          <mat-error *ngIf="submitted && f.nbPersonne.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.nbPersonne.errors.required">Veuillez taper le nombre Personne</mat-error>
+            <mat-error *ngIf="f.nbPersonne.errors.pattern">Le nbPersonne doit contenir seulement des lettres </mat-error>
+          </mat-error>
+        </mat-form-field>
+      <button mat-flat-button class="btn-ang mt-3"  type="submit"  (click)="onSubmitForm()" >Enrégistrer</button>
+  </form>
+  </div>
+  </div>
+</div>
+

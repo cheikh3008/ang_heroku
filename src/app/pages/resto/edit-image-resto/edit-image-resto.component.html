@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-12">
+      <h2>Mettre à jour la photo de profil</h2>
+      <mat-divider></mat-divider>
+      <div class="pt-2 mb-2">
+        <img  [src]="urlimg+resto.image" width="170" height="150" alt="Image de profil" class="rounded">
+      </div>
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Veuillez choisir un image</mat-label>
+        <ngx-mat-file-input formControlName="image" (change)="onFileSelected($event)" placeholder="Basic outline placeholder" ></ngx-mat-file-input>
+        <mat-icon matSuffix>photo_camera</mat-icon>
+        <mat-error *ngIf="submitted && f.image.errors" class="invalid-feedback">
+          <mat-error *ngIf="f.image.errors.required">Veuillez choisir un image </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <div >
+        <button mat-flat-button class="btn-ang"  type="submit"  (click)="onSubmitForm()" >Enrégistrer</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+.add-resto-content{
+  background-color: #fff;
+  .form-check {
+    border: 1px solid rgb(218, 215, 215);
+    width: 100%;
+    padding: 5px;
+    margin: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
+mat-card {
+  background-color: #fff;
+}
+button.btn-ang {
+  margin-right: 5px;
+  width: 100px !important;
+}
+button.btn-annuler {
+  background-color: #333 !important;
+  color: #ffa900;
+  &:hover{
+    background-color: #000 !important;
+  }
+}

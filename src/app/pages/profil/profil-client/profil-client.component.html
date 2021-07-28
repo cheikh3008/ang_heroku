@@ -1,0 +1,73 @@
+<app-nav-bar></app-nav-bar>
+<div class="profil">
+  <div class="container" style="background-color: #fff; height: 100vh;">
+    <div class="row">
+      <div class="col-md-6 mx-auto text-center">
+        <mat-icon style="width: 100%; font-size: 100px;">mood</mat-icon>
+        <h3 class="pt-2 text-capitalize"> {{ profil.nomComplet }} </h3>
+        <a class="btn btn-link" (click)="getId(profil.id)" > Modifier mon profile </a> |
+        <a class="btn btn-link" (click)="getPassword()" > Modifier mon mot passe </a>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-tab-group>
+      <mat-tab label="Réservations">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Heure</th>
+              <th scope="col">Etat</th>
+              <th scope="col">Tables</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let res of reservations;">
+            <tr>
+              <th scope="row">{{ res.id }}</th>
+              <td>{{ res.createdAt | date: 'd MMM y'}}</td>
+              <td>{{ res.heure | date: 'hh:mm'}}</td>
+              <td *ngIf="res.isValid == false" >En cours...</td>
+              <td *ngIf="res.isValid == true" >Validé...</td>
+              <div *ngFor="let tables of res.tables">
+                <td>
+                  Table N°: {{tables.numero}} -
+                  Nombre de personne: {{tables.nbPersonne}}
+                </td>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Commandes">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Numéro de commande</th>
+              <th scope="col">Date</th>
+              <th scope="col">Etat</th>
+              <th scope="col">Plat</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let cmd of commandes;">
+            <tr>
+              <th scope="row">{{ cmd.id }}</th>
+              <td>{{ cmd.numCommande }}</td>
+              <td>{{ cmd.createdAt | date: 'd MMM y'}}</td>
+              <td *ngIf="cmd.isValid == false" >En cours...</td>
+              <td *ngIf="cmd.isValid == true" >Validé...</td>
+              <div *ngFor="let plat of cmd.platCommandes">
+                <td>
+                  Nom du plat: {{plat.plat.nomPlat}} -
+                  Prix: {{plat.plat.prix}} -
+                  Quantité: {{plat.quantite}}
+                </td>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

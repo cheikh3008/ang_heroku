@@ -1,0 +1,57 @@
+<div class="card container"  >
+  <h2 class="mt-3" >Modifier un plat</h2>
+  <div style="overflow:auto; margin-bottom: 30px">
+    <div class="mat-elevation-z8" >
+      <mat-divider></mat-divider>
+  <form [formGroup]="formPlat" class="mt-3" >
+        <mat-form-field appearance="outline">
+          <mat-label>Nom du plat</mat-label>
+          <label>
+            <input matInput placeholder="Entrez le nom du plat" [value]="formPlat.value.nomPlat" formControlName="nomPlat" class="input">
+          </label>
+          <mat-error *ngIf="submitted && f.nomPlat.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.nomPlat.errors.required">Veuillez taper le prénom</mat-error>
+            <mat-error *ngIf="f.nomPlat.errors.pattern">Le prénom doit contenir seulement des lettres </mat-error>
+            <mat-error *ngIf="f.nomPlat.errors.minlength">Le prénom doit contenir au minimu 3 lettres </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <label>
+            <input matInput placeholder="Entrez la description" [value]="formPlat.value.description" formControlName="description">
+          </label>
+          <mat-error *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.description.errors.required">Veuillez taper la description</mat-error>
+            <mat-error *ngIf="f.description.errors.minlength">Le description doit contenir au minimu 2 lettres </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prix </mat-label>
+          <label>
+            <input matInput placeholder="Entrez le prix" [value]="formPlat.value.prix"  type="text" formControlName="prix">
+          </label>
+          <mat-error *ngIf="submitted && f.prix.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.prix.errors.required">Veuillez taper le prix </mat-error>
+            <!-- <mat-error *ngIf="f.prix.errors.minlength">Le mot de passe doit contenir au minimu 5 caractères </mat-error> -->
+          </mat-error>
+        </mat-form-field>
+        <label class="mb-2" id="menu">Choisir un menu</label><br>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="menu" placeholder="menu"  style="height: 20px;"  [(value)]="selected" >
+            <label>
+              <mat-option  *ngFor="let menu of menus" [value]="menu.id" >
+               {{menu.categorie}}
+              </mat-option>
+            </label>
+          </mat-select>
+          <mat-error *ngIf="submitted && f.menu.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.menu.errors.required">Veuillez choisir un menu </mat-error>
+          </mat-error>
+        </mat-form-field>
+      <button mat-flat-button class="btn-ang mt-3" (click)="onSubmitForm()" type="submit"  >Modifier</button>
+  </form>
+  </div>
+  </div>
+</div>
+

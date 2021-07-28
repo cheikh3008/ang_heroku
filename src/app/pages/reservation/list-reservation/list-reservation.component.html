@@ -1,0 +1,171 @@
+<!-- <mat-card >
+  <div class="d-flex justify-content-between">
+    <h2 class="ml-2 " >La liste des reservations</h2>
+
+  </div>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Recherche</mat-label>
+    <label>
+      <input matInput placeholder="Rechercher un plat" (keyup)="applyFilter($event)">
+    </label>
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z8 mt-3" >
+    <mat-table [dataSource]="listData"  >
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+      <ng-container matColumnDef="action" >
+        <mat-header-cell *matHeaderCellDef >ACTION</mat-header-cell  >
+        <mat-header-cell *matCellDef="let row " >
+          <div class="d-flex justify-content-around ">
+            <button mat-mini-fab color="warn" >
+                <mat-icon>border_color </mat-icon>
+              </button>
+              <br>
+              <button mat-menu-item  >
+                <mat-icon>delete</mat-icon>
+              </button>
+          </div>
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="id" >
+        <mat-header-cell *matHeaderCellDef>Idenfiant</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations">
+          {{reservations.id}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nomComplet">
+        <mat-header-cell *matHeaderCellDef  >Nom complet</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations ">
+          {{reservations.user.nomComplet}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="telephone">
+        <mat-header-cell *matHeaderCellDef  >Téléphone</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations">
+          {{reservations.user.telephone}}
+        </mat-header-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nbPersonne">
+        <mat-header-cell *matHeaderCellDef  >Nb personne</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations">
+          {{reservations.nbPersonne}}
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef  >Date</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations">
+          {{reservations.createdAt |   date:'dd-MM-yyyy'}}
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="heure">
+        <mat-header-cell *matHeaderCellDef  >Heure</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations">
+          {{reservations.heure |   date:'hh:mm'}}
+        </mat-header-cell>
+      </ng-container>
+      <ng-container matColumnDef="tables">
+        <mat-header-cell *matHeaderCellDef  >Table</mat-header-cell>
+        <mat-header-cell *matCellDef="let reservations">
+          <mat-table class="" *ngIf="reservations.tables.length > 0" #table2 [dataSource]="getdata(reservations.tables)">
+            <ng-container matColumnDef="numero">
+              <mat-header-cell *matHeaderCellDef> Numéro </mat-header-cell>
+              <mat-cell *matCellDef="let element2">N° {{element2.numero}} </mat-cell>
+            </ng-container>
+              <ng-container matColumnDef="nbPersonne">
+              <mat-header-cell *matHeaderCellDef> Personne </mat-header-cell>
+              <mat-cell *matCellDef="let element2"> {{element2.nbPersonne}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+            <mat-row *matRowDef="let row2; columns: displayedColumns2;"></mat-row>
+          </mat-table>
+        </mat-header-cell>
+      </ng-container>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
+
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom Complet</th>
+      <th scope="col">Téléphone</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <div *ngIf="dataReservation">
+
+    <tbody *ngFor="let reservation of dataReservation || [];">
+      <tr>
+        <td>{{ reservation.id }}</td>
+        <td>{{ reservation.user.nomComplet }}</td>
+      </tr>
+    </tbody>
+  </div>
+</table> -->
+<mat-card >
+  <div>
+    <h2 class="ml-2 " >La liste des reservations</h2>
+  </div>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Recherche</mat-label>
+    <label>
+      <input matInput placeholder="Rechercher un nom" name="search" [(ngModel)]="searchText" autocomplete="off">
+    </label>
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z8 mt-3" >
+    <ng-container *ngIf="reservations.length > 0" >
+    <table class="table" >
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nom complet</th>
+          <th scope="col">Téléphone</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Etat</th>
+          <th scope="col">Date</th>
+          <th scope="col">Heure</th>
+          <th scope="col">Tables</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let reservation of reservations | filter:searchText" >
+        <tr>
+          <th scope="row"> {{reservation.id}} </th>
+          <td> {{reservation.user.nomComplet}}</td>
+          <td>  {{reservation.user.telephone}}  </td>
+          <td>  {{reservation.user.adresseDomicile}}  </td>
+
+          <td>
+            <div *ngIf="reservation.isValid; else elseBlock">
+              <button (click)="onStatus(reservation.id)" class="action-btn" title="Validé">
+                <mat-icon style="color: green;" >check_circle_outline</mat-icon>
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button (click)="onStatus(reservation.id)" class="action-btn" title="En cours...">
+                <mat-icon color="warn">block</mat-icon>
+              </button>
+            </ng-template>
+          </td>
+          <td> {{reservation.createdAt |  date:'dd-MM-yyyy'}} </td>
+          <td> {{reservation.heure |  date:'HH:mm'}} </td>
+          <td *ngFor="let tables of reservation.tables" >
+            <span>Table: N° {{tables.numero}} </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </ng-container>
+    <div *ngIf="reservations.length == 0">
+      <div class="container " style="background-color: #fff;">
+        <h2 class="py-3 text-center">il n'y a pas de reservation !</h2>
+      </div>
+    </div>
+  </div>
+</mat-card>

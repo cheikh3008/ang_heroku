@@ -1,0 +1,120 @@
+<div class="details-resto">
+  <app-nav-bar></app-nav-bar>
+  <!-- <nav class=" navbar navbar-expand-lg  sticky-top" id="mainNav">
+    <div class="container">
+        <div class="container-lg">
+            <a class="navbar-brand " [routerLink]="['/']">
+                {{ resto.nomResto }}
+            </a>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive"><i class="fas fa-bars pl-2"></i>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class=" navbar-nav">
+            <li class="nav-item">
+              <a routerLink="/panier" class="btn  d-flex justify-content-between ">
+                <span class="panier-count">{{ itemInCart }}  </span>
+                <mat-icon>shopping_basket</mat-icon>
+                <span>Voir le panier</span>
+              </a>
+            </li>
+              <li class="nav-item">
+                <div *ngIf="isRoleClient(); else elseBlock" class="d-flex justify-content-between">
+                  <a routerLink="/reservation/{{resto.id}}"  class="btn d-flex justify-content-between">
+                    <mat-icon>subtitles</mat-icon>
+                      <span>Reserver</span>
+                  </a>
+                  <div>
+                    <a class="btn d-flex justify-content-between" mat-button [matMenuTriggerFor]="menu">
+                      <span class="text-capitalize">{{ nomComplet }}</span>
+                      <mat-icon>expand_more</mat-icon>
+                    </a>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="getProfil()" >
+                        <mat-icon> person_pin</mat-icon>
+                        Mon profil
+                      </button>
+                      <button mat-menu-item (click)="onLogout()">
+                        <mat-icon>exit_to_app </mat-icon>
+                        Deconnexion
+                      </button>
+                    </mat-menu>
+                  </div>
+                </div>
+                <ng-template #elseBlock>
+                  <a (click)="openDialog()" class="btn d-flex justify-content-between ">
+                    <mat-icon>subtitles</mat-icon>
+                      Reserver une table
+                  </a>
+                </ng-template>
+              </li>
+          </ul>
+        </div>
+    </div>
+  </nav> -->
+  <div class="container">
+    <div class="row align-items-center pt-1">
+      <div class="col-md-3 bloc-img">
+        <img [src]="urlimg+resto.image" class="card-img-top card-img-resto"  alt="{{resto.nomResto}}">
+      </div>
+      <div class="col-md-9 bloc-text">
+        <h1> {{resto.nomResto}} </h1>
+        <h3> {{resto.description}} </h3>
+        <div class="d-flex justify-content-sm-start " >
+          <h4> <mat-icon>phone </mat-icon>  {{resto.user.telephone}} </h4>
+          <h4 class="mx-3"> <mat-icon>gps_fixed </mat-icon>  {{resto.adresse}} </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <div class="col-md-12 mx-auto menu">
+      <div class="row ">
+        <div class="col-sm-6 col-md-6" *ngFor="let menu of menus;">
+          <div class="section-menu d-flex align-items-center">
+            <div class="section-img">
+              <img width="100" class=" card-img-plat" [src]="urlimg+menu.image"  alt="Image de {{ menu.categorie }}">
+            </div>
+            <div>
+              <h2> {{ menu.categorie }} </h2>
+            </div>
+          </div>
+          <div class=" section-plat mt-4">
+            <div *ngFor="let plat of menu.plat">
+              <div class="card p-1 my-2">
+                <div class=" d-flex justify-content-between mt-4">
+                  <h3>{{ plat.nomPlat }}</h3>
+                  <h3>
+                    <span>{{ plat.prix }} FCA</span>
+                    <span>
+                      <button  (click)="addPanier(plat)" class="btn btn-panier  float-right">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                      </button>
+                    </span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="border border-dark rounded p-2 clearfix">
+              <h3>
+                  {{ plat.nomPlat }}
+                  -
+                  {{ plat.prix }}
+                  FCA
+              </h3>
+              <img width="100%" height="150" class="card-img-top card-img-plat" [src]="urlimg+plat.image"  alt="Image de {{ plat.nomPlat }}">
+              <hr>
+              <button  (click)="addPanier(plat)" class="btn btn-panier  float-right">
+                <mat-icon >shopping_cart</mat-icon>
+                  Ajouter
+              </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
